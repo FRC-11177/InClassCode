@@ -133,8 +133,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    LeftMotor.set(controller.getLeftY());
-    RightMotor.set(controller.getRightY());
+    if(controller.getAButton()){
+      LeftMotor.set(controller.getLeftY());
+      RightMotor.set(controller.getRightY());
+    }else{
+    LeftMotor.set(controller.getLeftY()*0.5); // speed limit for human driving.
+    RightMotor.set(controller.getRightY()*0.5);
+    }
   }
 
   @Override
